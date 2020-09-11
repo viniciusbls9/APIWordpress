@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableHighlight, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TouchableHighlight, StyleSheet, ScrollView, Linking } from 'react-native';
 
 import axios from 'axios';
 
@@ -25,9 +25,8 @@ const App = () => {
     <ScrollView>
       {items.map((item) => (
         <View key={item.id}>
-          <Text>{item.categories}</Text>
           <Text>{JSON.stringify(item.title).replace('{"rendered":"', '').replace('"}', '')}</Text>
-          <TouchableHighlight style={styles.btn}>
+          <TouchableHighlight style={styles.btn} onPress={() => Linking.openURL(`${item.link}`) }>
             <Text>{item.link}</Text>
           </TouchableHighlight>
         </View>
